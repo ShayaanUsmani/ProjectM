@@ -5,7 +5,7 @@ using UnityEngine;
 public class CamMovement : MonoBehaviour
 {
     public Vector3 playerPos;
-    public Vector3 initOffset;
+    public  Vector3 initOffset;
     public GameObject player;
     public KeyCode recenterKey = KeyCode.Space;
     public int cameraMoveSpeedMouse = 10;
