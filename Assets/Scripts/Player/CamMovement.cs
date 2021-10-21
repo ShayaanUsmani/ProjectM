@@ -8,6 +8,8 @@ public class CamMovement : MonoBehaviour
     public  Vector3 initOffset;
     public GameObject player;
     public KeyCode recenterKey = KeyCode.Space;
+    public KeyCode recenterToggleKey = KeyCode.Y;
+    private bool camToggled;
     public int cameraMoveSpeedMouse = 10;
 
     // Start is called before the first frame update
@@ -28,20 +30,26 @@ public class CamMovement : MonoBehaviour
         MouseOnEdge();
     }
 
-    // Recenter the camera onto the player when holding down the recenter key
+    // Recenter the camera onto the player when holding down the recenter key or toggling recenter
     void RecenterOnInput()
     {
+        if (Input.GetKeyDown(recenterToggleKey))
+        {
+            camToggled = !camToggled;
+        }
+
         playerPos = player.transform.position;
-        if (Input.GetKey(recenterKey))
+        if (camToggled || Input.GetKey(recenterKey))
         {
             gameObject.transform.position = playerPos + initOffset;
         }
     }
 
+
     // Adjust the camera when mouse cursor is on edge of the screen
     void MouseOnEdge()
     {
-        if (Input.GetKey(recenterKey))
+        if (camToggled || Input.GetKey(recenterKey))            // dont want the cam moving around when holding recenter key or camera is toggled
         {
             return;
         }
