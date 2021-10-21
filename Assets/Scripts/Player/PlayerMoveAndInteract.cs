@@ -10,9 +10,8 @@ public class PlayerMoveAndInteract : MonoBehaviour
     private int rayCastDist = 20;
     public int movementMouseButton = 1;
     private GameObject target;
-
     private string enemyTag = "EnemyBot";
-    private bool canMove = true;
+    private bool inRangeOfTarget = false;
 
 
     // player stats
@@ -33,21 +32,29 @@ public class PlayerMoveAndInteract : MonoBehaviour
         cam = Camera.main;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         if (Input.GetMouseButtonDown(movementMouseButton))
         {
-            if (canMove)
-            {
-                player.SetDestination(ClickPoint());
-            }
-
+            player.SetDestination(ClickPoint());
             
         }
-        if (target != null && target.CompareTag(enemyTag))
+        if (target != null)
         {
-            ClickedEnemyBot();
+            if (target.CompareTag(enemyTag))
+            {
+                inRangeOfTarget = Mathf.Abs(Vector3.Magnitude(target.transform.position - player.transform.position)) <= autoRange;
+                ClickedEnemyBot();
+            }
+            else
+            {
+                inRangeOfTarget = false;
+            }
+            if (inRangeOfTarget)
+            {
+                player.SetDestination(player.transform.position);
+            }
         }
 
     }
@@ -85,10 +92,11 @@ public class PlayerMoveAndInteract : MonoBehaviour
             {
                 target = target.transform.parent.gameObject;
             }
-        }
-        else
-        {
-            canMove = true;
+
+            if (!target.CompareTag(enemyTag))
+            {
+                inRangeOfTarget = false;
+            }
         }
         return hit.point;
 
