@@ -323,6 +323,7 @@
 "Assets/Scripts/Helper.cs"
 "Assets/Scripts/HPBar.cs"
 "Assets/Scripts/Player/CamMovement.cs"
+"Assets/Scripts/Player/EarthGolem/EarthGolemAbilities.cs"
 "Assets/Scripts/Player/PlayerMoveAndInteract.cs"
 -langversion:8.0
 

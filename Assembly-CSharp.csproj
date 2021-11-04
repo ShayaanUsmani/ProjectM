@@ -58,6 +58,8 @@
     <Compile Include="Assets\Scripts\Helper.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMoveAndInteract.cs" />
     <Compile Include="Assets\Scripts\Player\CamMovement.cs" />
+    <Compile Include="Assets\Scripts\Player\EarthGolem\EarthGolemAbilities.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyBotCCAffect.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
